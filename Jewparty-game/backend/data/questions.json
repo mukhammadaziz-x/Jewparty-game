@@ -1,0 +1,270 @@
+{
+  "topics": [
+    {
+      "id": "t1",
+      "name": "Movies",
+      "emoji": "🎬",
+      "questions": [
+        {
+          "id": "q1",
+          "points": 100,
+          "question": "This 1994 film features a man named Forrest who runs across America.",
+          "answer": "Forrest Gump",
+          "image": null
+        },
+        {
+          "id": "q2",
+          "points": 200,
+          "question": "The line 'I'll be back' is from which Arnold Schwarzenegger movie?",
+          "answer": "The Terminator",
+          "image": null
+        },
+        {
+          "id": "q3",
+          "points": 300,
+          "question": "Which Christopher Nolan film features a city folding inside a dream?",
+          "answer": "Inception",
+          "image": null
+        },
+        {
+          "id": "q4",
+          "points": 400,
+          "question": "Who directed the 'Lord of the Rings' trilogy?",
+          "answer": "Ramzan Qadirov",
+          "image": null
+        },
+        {
+          "id": "q5",
+          "points": 500,
+          "question": "What 1994 crime film features Jules Winnfield and Vincent Vega?",
+          "answer": "Pulp Fiction",
+          "image": null
+        },
+        {
+          "id": "a67d22b5-5b2b-470c-ad17-63d4df8d5e17",
+          "points": 500,
+          "question": "No way home",
+          "answer": "222",
+          "image": "308039db-602a-45f7-93b2-341033f15be2.jpg"
+        }
+      ]
+    },
+    {
+      "id": "t2",
+      "name": "Music",
+      "emoji": "🎵",
+      "questions": [
+        {
+          "id": "q6",
+          "points": 100,
+          "question": "Which artist released the album 'Thriller' in 1982?",
+          "answer": "Michael Jackson",
+          "image": null
+        },
+        {
+          "id": "q7",
+          "points": 200,
+          "question": "What band performed 'Bohemian Rhapsody'?",
+          "answer": "Queen",
+          "image": null
+        },
+        {
+          "id": "q8",
+          "points": 300,
+          "question": "In what year did The Beatles release 'Abbey Road'?",
+          "answer": "1969",
+          "image": null
+        },
+        {
+          "id": "q9",
+          "points": 400,
+          "question": "Who composed the '9th Symphony' despite being deaf?",
+          "answer": "Beethoven",
+          "image": null
+        },
+        {
+          "id": "q10",
+          "points": 500,
+          "question": "What genre of music is associated with artists like Tupac and Notorious B.I.G.?",
+          "answer": "East Coast Hip-Hop / Rap",
+          "image": null
+        }
+      ]
+    },
+    {
+      "id": "t3",
+      "name": "Science",
+      "emoji": "🔬",
+      "questions": [
+        {
+          "id": "q11",
+          "points": 100,
+          "question": "What planet is known as the Red Planet?",
+          "answer": "Mars",
+          "image": null
+        },
+        {
+          "id": "q12",
+          "points": 200,
+          "question": "What is the chemical symbol for Gold?",
+          "answer": "Au",
+          "image": null
+        },
+        {
+          "id": "q13",
+          "points": 300,
+          "question": "How many bones are in an adult human body?",
+          "answer": "206",
+          "image": null
+        },
+        {
+          "id": "q14",
+          "points": 400,
+          "question": "What is the speed of light (approx) in km/s?",
+          "answer": "299,792 km/s",
+          "image": null
+        },
+        {
+          "id": "q15",
+          "points": 500,
+          "question": "What is the powerhouse of the cell?",
+          "answer": "Mitochondria",
+          "image": null
+        }
+      ]
+    },
+    {
+      "id": "t4",
+      "name": "History",
+      "emoji": "📚",
+      "questions": [
+        {
+          "id": "q16",
+          "points": 100,
+          "question": "In what year did World War II end?",
+          "answer": "1945",
+          "image": null
+        },
+        {
+          "id": "q17",
+          "points": 200,
+          "question": "Who was the first President of the United States?",
+          "answer": "George Washington",
+          "image": null
+        },
+        {
+          "id": "q18",
+          "points": 300,
+          "question": "The Great Wall of China was primarily built during which dynasty?",
+          "answer": "Ming Dynasty",
+          "image": null
+        },
+        {
+          "id": "q19",
+          "points": 400,
+          "question": "What year did the Berlin Wall fall?",
+          "answer": "1989",
+          "image": null
+        },
+        {
+          "id": "q20",
+          "points": 500,
+          "question": "In what year did Uzbekistan gain its independence?",
+          "answer": "1991",
+          "image": null
+        }
+      ]
+    },
+    {
+      "id": "t5",
+      "name": "Games",
+      "emoji": "🎮",
+      "questions": [
+        {
+          "id": "q21",
+          "points": 100,
+          "question": "What is the best-selling video game of all time?",
+          "answer": "Minecraft",
+          "image": null
+        },
+        {
+          "id": "q22",
+          "points": 200,
+          "question": "In chess, which piece can only move diagonally?",
+          "answer": "Bishop",
+          "image": null
+        },
+        {
+          "id": "q23",
+          "points": 300,
+          "question": "Which game features the character 'Master Chief'?",
+          "answer": "Halo",
+          "image": null
+        },
+        {
+          "id": "q24",
+          "points": 400,
+          "question": "What year was the original Pong released?",
+          "answer": "1972",
+          "image": null
+        },
+        {
+          "id": "q25",
+          "points": 500,
+          "question": "In Dota 2, what is the name of the final boss near the end of the game?",
+          "answer": "Roshan",
+          "image": null
+        }
+      ]
+    },
+    {
+      "id": "b1a2f174-354a-4dc3-9f41-298cd90687aa",
+      "name": "MuhammadAziz",
+      "emoji": "📚",
+      "questions": [
+        {
+          "id": "b2c99e04-7bb3-4639-9175-f846281b0cd4",
+          "points": 100,
+          "question": "Nima uchun olma bu olma?",
+          "answer": "Chunki u Olma",
+          "image": null
+        },
+        {
+          "id": "9257d2c5-a18a-4f37-aa4e-6a9a59003d8c",
+          "points": 100,
+          "question": "2+2=?",
+          "answer": "5",
+          "image": null
+        }
+      ]
+    },
+    {
+      "id": "beb9ebce-ba97-4ea3-888b-27abe1fb6d35",
+      "name": "Somthing more interesting",
+      "emoji": "🤣",
+      "questions": [
+        {
+          "id": "57175487-871f-4078-a94c-58d3e3e52b41",
+          "points": 500,
+          "question": "Who is this guy ?",
+          "answer": "Babayaga",
+          "image": "7f6a2489-e5e2-4534-90b4-c25b6c7c68cd.webp"
+        },
+        {
+          "id": "df6dfcac-5b35-4e0b-8fff-7589b30b65a0",
+          "points": 100,
+          "question": "Nima qilyapsiz Ramazon",
+          "answer": "idk",
+          "image": null
+        },
+        {
+          "id": "6593dd0e-f3ad-47b7-9211-9d3b33676867",
+          "points": 500,
+          "question": "Hech nima o'tiribman",
+          "answer": "afdfad",
+          "image": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDP Jewparty 🎯</title>
+  <meta name="description" content="PDP Jewparty – Kahoot-style multiplayer Jeopardy game" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@400;700;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <canvas id="bg-canvas"></canvas>
+  <div id="toast" class="toast"></div>
+
+  <!-- ══════════════════ HOME ══════════════════ -->
+  <div id="v-home" class="view active">
+    <div class="home-wrap">
+      <div class="home-hero">
+        <div class="live-badge">🔴 LIVE</div>
+        <h1 class="brand"><span class="b-pdp">PDP</span><span class="b-jew">Jewparty</span></h1>
+        <p class="brand-tagline">The ultimate quiz battle — Kahoot meets Jeopardy!</p>
+      </div>
+      <div class="home-cards">
+        <!-- HOST -->
+        <div class="hcard glass">
+          <div class="hcard-icon">🏆</div>
+          <h2>Host a Game</h2>
+          <p>Create a room and invite players with a PIN</p>
+          <button class="btn btn-gold" onclick="gotoHostSetup()">
+            <span>Host Game</span>
+            <div class="shimmer"></div>
+          </button>
+          <a href="/admin" class="admin-link">⚙️ Manage Topics</a>
+        </div>
+        <!-- JOIN -->
+        <div class="hcard glass">
+          <div class="hcard-icon">🎮</div>
+          <h2>Join a Game</h2>
+          <p>Enter the PIN shown on the host screen</p>
+          <div class="igroup">
+            <label>Your Name</label>
+            <input id="join-name" type="text" placeholder="Enter your name…" maxlength="20" />
+          </div>
+          <div class="igroup">
+            <label>Game PIN</label>
+            <input id="join-pin" type="text" placeholder="000000" maxlength="6"
+              style="text-align:center;letter-spacing:.3em;font-size:22px;font-weight:800" />
+          </div>
+          <button class="btn btn-accent" onclick="joinGame()">
+            <span>Join Game</span>
+            <div class="shimmer"></div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════ HOST SETUP ══════════════════ -->
+  <div id="v-host-setup" class="view">
+    <div class="setup-page">
+      <button class="back-btn" onclick="showView('v-home')">← Back</button>
+      <div class="setup-logo"><span class="b-pdp">PDP</span><span class="b-jew">Jewparty</span></div>
+      <h2 class="setup-h">Select Topics for This Game</h2>
+      <p class="setup-sub">Choose the categories players will compete in</p>
+      <div id="sel-topics-grid" class="sel-topics-grid"></div>
+      <div class="igroup" style="max-width:340px;margin:0 auto">
+        <label>Host Name (displayed on board)</label>
+        <input id="host-name" type="text" placeholder="Host" maxlength="20" value="Host" />
+      </div>
+      <button class="btn btn-gold btn-xl" onclick="createRoom()">
+        <span>🚀 Create Room & Get PIN</span>
+        <div class="shimmer"></div>
+      </button>
+    </div>
+  </div>
+
+  <!-- ══════════════════ WAITING ROOM (Host) ══════════════════ -->
+  <div id="v-waiting" class="view">
+    <div class="waiting-page">
+      <div class="pin-box">
+        <div class="pin-label">GAME PIN</div>
+        <div class="pin-number" id="pin-display">------</div>
+        <div class="pin-hint">Players go to <strong id="pin-url">localhost:8000</strong> and enter this PIN</div>
+      </div>
+      <h3 class="waiting-title">Waiting for players to join…</h3>
+      <div id="waiting-players" class="waiting-players"></div>
+      <button class="btn btn-gold btn-xl" id="start-btn" onclick="startGame()">
+        🎮 Start Game <span id="player-count-badge" class="count-badge">0</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ══════════════════ BOARD (Host) ══════════════════ -->
+  <div id="v-board" class="view">
+    <div class="board-topbar">
+      <div class="gtl"><span class="b-pdp">PDP</span><span class="b-jew">Jewparty</span></div>
+      <div class="gtc" id="board-status">Select a question!</div>
+      <div class="gtr">
+        <span class="pin-pill">PIN: <b id="board-pin"></b></span>
+        <button class="btn-icon" onclick="toggleFullscreen()" title="Fullscreen">⛶</button>
+        <button class="btn-icon danger" onclick="endGame()" title="End game">🏁</button>
+      </div>
+    </div>
+    <div class="board-body">
+      <div id="jeopardy-board" class="jeopardy-board"></div>
+    </div>
+    <div id="scorebar" class="scorebar"></div>
+  </div>
+
+  <!-- ══════════════════ PLAYER VIEW ══════════════════ -->
+  <div id="v-player" class="view">
+    <div class="player-page">
+      <div class="player-header">
+        <span class="player-name-chip" id="player-chip">You</span>
+        <span class="player-score-chip" id="player-score-chip">0 pts</span>
+      </div>
+
+      <div id="player-main" class="player-main">
+        <!-- Waiting message -->
+        <div class="player-waiting-msg" id="player-status-msg">
+          <div class="pulse-ring"></div>
+          <p>Waiting for host to select a question…</p>
+        </div>
+
+        <!-- Question area -->
+        <div id="player-question-area" class="player-q-area hidden">
+          <div class="pq-cat" id="pq-cat"></div>
+          <div class="pq-pts" id="pq-pts"></div>
+          <div class="pq-text" id="pq-text"></div>
+          <img class="pq-img hidden" id="pq-img" src="" alt="Question image" />
+          <div class="pq-timer-bar">
+            <div class="pq-timer-fill" id="pq-timer"></div>
+          </div>
+        </div>
+
+        <!-- Buzz Button -->
+        <div id="buzz-area" class="buzz-area hidden">
+          <button id="buzz-btn" class="buzz-btn" onclick="doBuzz()">⚡ BUZZ!</button>
+          <p class="buzz-hint">Press <kbd>Space</kbd> to buzz</p>
+        </div>
+
+        <div id="buzz-result" class="buzz-result hidden"></div>
+      </div>
+
+      <!-- Leaderboard strip -->
+      <div id="player-lb" class="player-lb"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════ END SCREEN ══════════════════ -->
+  <div id="v-end" class="view">
+    <canvas id="confetti-canvas"></canvas>
+    <div class="end-wrap">
+      <div class="end-trophy">🏆</div>
+      <h1 class="end-title">Game Over!</h1>
+      <div class="winner-banner" id="winner-banner"></div>
+      <div class="end-podium" id="end-podium"></div>
+      <div class="end-all" id="end-all"></div>
+      <div class="end-btns">
+        <button class="btn btn-gold" onclick="location.reload()">🔄 Play Again</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════ QUESTION MODAL (Host) ══════════════════ -->
+  <div id="q-modal" class="modal-bg hidden">
+    <div class="q-card">
+      <div class="q-header">
+        <span class="q-cat-badge" id="qm-cat"></span>
+        <span class="q-pts-badge" id="qm-pts"></span>
+      </div>
+      <div class="q-text" id="qm-text"></div>
+      <img class="q-img hidden" id="qm-img" src="" alt="" />
+      <div class="q-timer-bar">
+        <div class="q-timer-fill" id="qm-timer"></div>
+      </div>
+
+      <!-- Buzz indicator -->
+      <div class="q-buzz-info hidden" id="q-buzz-info">
+        <div class="buzz-player-name" id="buzz-player-name"></div>
+        <div class="buzz-label">buzzed in!</div>
+        <div class="judge-btns">
+          <button class="btn btn-correct" onclick="judgeAnswer(true)">✅ Correct</button>
+          <button class="btn btn-wrong" onclick="judgeAnswer(false)">❌ Wrong</button>
+        </div>
+      </div>
+
+      <!-- Waiting for buzz -->
+      <div class="q-waiting-buzz" id="q-waiting-buzz">
+        <div class="buzz-waiting-anim"></div>
+        <p>Waiting for a player to buzz in…</p>
+      </div>
+
+      <!-- Answer revealed -->
+      <div class="q-answer-area hidden" id="q-answer-area">
+        <div class="ans-label">ANSWER</div>
+        <div class="ans-text" id="qm-answer"></div>
+      </div>
+
+      <div class="q-footer">
+        <button class="btn btn-ghost" onclick="revealAnswer()" id="btn-reveal">👁 Show Answer</button>
+        <button class="btn btn-ghost" onclick="skipQuestion()">⏭ Skip</button>
+        <button class="btn btn-accent" onclick="closeQuestion()">Continue →<div class="shimmer"></div></button>
+      </div>
+      <button class="q-x" onclick="closeQuestion()">✕</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════ RESULT FLASH ══════════════════ -->
+  <div id="result-flash" class="result-flash hidden">
+    <div class="rf-icon" id="rf-icon"></div>
+    <div class="rf-title" id="rf-title"></div>
+    <div class="rf-msg" id="rf-msg"></div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+
+</html>
